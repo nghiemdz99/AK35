@@ -1,0 +1,30 @@
+<suite name="HomddePage">
+    <test name="HomePageTest">
+        <classes>
+            <class name="testsuites.z689Cloud.HomePageTest"/>
+            <methods>
+                <include name="TC0GoToHomePage"/>
+                <include name="TC1_ContactUsNowpopup_HomePage"/>
+                <include name="TC2_GetInTouchForm_HomePage"/>
+<!--                <include name="TC03_GoToSecureDrivePage"/>-->
+<!--                <include name="TC04_TrialRequestForm"/>-->
+<!--                <include name="TC05_ContactUsForQuotationForm"/>-->
+<!--                <include name="TC06_GoToSecureMailPage"/>-->
+<!--                <include name="TC07_GoToSupport_SecureDrivePage"/>-->
+<!--                <include name="TC08_GoToSupport_SecureMailPage"/>-->
+<!--                <include name="TC09_GoToFAQ_SecureDrivePage"/>-->
+<!--                <include name="TC10_GoToFAQ_SecureMailPage"/>-->
+<!--                <include name="TC11_OtherQuestionsForm"/>-->
+<!--                <include name="TC12_GoToDownloadPage"/>-->
+<!--                <include name="TC13_GoToNewPage"/>-->
+<!--                <include name="TC14_GoToBLOGSPage"/>-->
+<!--                <include name="TC15_GoToCompanyInformation"/>-->
+<!--                <include name="TC16_GoToPrivacyPolicy"/>-->
+<!--                <include name="TC17_GoToTermsAndCondition"/>-->
+<!--                <include name="TC18_GoToCONTACTUSPage"/>-->
+<!--                <include name="TC19_GetInTouchForm_CONTACTUS"/>-->
+            </methods>
+
+        </classes>
+    </test>
+</suite>
