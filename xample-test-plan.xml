@@ -7,21 +7,19 @@
                 <include name="TC01_Login"/>
                 <include name="TC02_CreateProjectWithAutoApplyDRM"/>
                 <include name="TC03_GoToProjectDetails"/>
-                <include name="TC04_UploadFiles"/>
-                <include name="TC05_UploadFolder"/>
-                <include name="TC06_CreateFolder"/>
-                <include name="TC07_MoveFileToFolder"/>
-                <include name="TC08_InviteCollaborators"/>
-                <include name="TC09_ViewOnlineFileOnProjectList"/>
-                <include name="TC10_SetDRM_DisableDRM"/>
-                <include name="TC11ViewInternalTrackingReport"/>
-                <include name="TC12_AddNewAddressBook"/>
-                <include name="TC13_DeleteAddressBook"/>
-                <include name="TC14_UpdateProjectSetting"/>
-                <include name="TC15_ShareProject"/>
-
+<!--                <include name="TC04_CreateFolder"/>-->
+<!--                <include name="TC05_UploadFiles"/>-->
+<!--                <include name="TC06_UploadFolder"/>-->
+<!--                <include name="TC07_MoveFileToFolder"/>-->
+<!--                <include name="TC08_InviteCollaborators"/>-->
+<!--                <include name="TC09_ViewOnlineFileOnProjectList"/>-->
+<!--                <include name="TC10_SetDRM_DisableDRM"/>-->
+<!--                <include name="TC11ViewInternalTrackingReport"/>-->
+<!--                <include name="TC12_AddNewAddressBook"/>-->
+<!--                <include name="TC13_DeleteAddressBook"/>-->
+<!--                <include name="TC14_UpdateProjectSetting"/>-->
+<!--                <include name="TC15_ShareProject"/>-->
             </methods>
-
         </classes>
     </test>
 </suite>

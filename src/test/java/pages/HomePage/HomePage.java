@@ -146,9 +146,8 @@ public class HomePage {
         driver.findElement(CompanyName_ContactUstxt).sendKeys("689Cloud");
         driver.findElement(PhoneNumber_ContactUstxt).sendKeys("0347994701");
         driver.findElement(Message_ContactUsarea).sendKeys("Monitoring by Automation Test");
-        Thread.sleep(1000);
         driver.findElement(Submit_ContactUsPopupbtn).click();
-        Thread.sleep(1000);
+        Thread.sleep(3000);
         WebElement VerifyContactUsNowFormSuccess = driver.findElement(MessageSubmitContactUspopupSuccess);
         Assert.assertTrue(VerifyContactUsNowFormSuccess.isDisplayed());
         driver.findElement(Close_Contactbtn).click();
@@ -158,7 +157,7 @@ public class HomePage {
         WebElement moveToGetInTouchForm = driver.findElement(Near_GetInTouchForm);
         ((JavascriptExecutor) driver).executeScript(
                 "arguments[0].scrollIntoView();", moveToGetInTouchForm);
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         driver.findElement(Emailtxt).sendKeys("nghiem.truong@689cloud.asia");
         driver.findElement(FirstNametxt).sendKeys("Nghiem");
         driver.findElement(LastNametxt).sendKeys("Truong");
@@ -171,6 +170,7 @@ public class HomePage {
                 "arguments[0].scrollIntoView();", moveToNearSubmitbtn);
         Thread.sleep(3000);
         wait.until(ExpectedConditions.elementToBeClickable(Submit_GetInTouchbtn));
+        Thread.sleep(2000);
         driver.findElement(Submit_GetInTouchbtn).click();
         Thread.sleep(3000);
         WebElement VerifyGetInTouchSuccess = driver.findElement(MessageSubmitGetInTouchSuccess);
@@ -187,11 +187,9 @@ public class HomePage {
         driver.findElement(LastName_Trialtxt).sendKeys("Truong");
         driver.findElement(Company_Trialtxt).sendKeys("689Cloud");
         driver.findElement(Phone_Trialtxt).sendKeys("0347994701");
-        Thread.sleep(1000);
         driver.findElement(Message_Trialarea).sendKeys("Monitoring by Automation Test");
-        Thread.sleep(3000);
         driver.findElement(Submit_Trialbtn).click();
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         WebElement VerifySubmitTrialRequestSuccess = driver.findElement(MessageSubmitTrialRequestSuccesspopup);
         Assert.assertTrue(VerifySubmitTrialRequestSuccess.isDisplayed());
         driver.findElement(Close_Trialbtn).click();
@@ -203,16 +201,15 @@ public class HomePage {
                 "arguments[0].scrollIntoView();", moveToNearPakega);
         Thread.sleep(3000);
         driver.findElement(EnterprisePlantbtn).click();
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         driver.findElement(Email_EnterprisePlantxt).sendKeys("nghiem.truong@689cloud.asia");
         driver.findElement(FirstName_EnterprisePlantxt).sendKeys("Nghiem");
         driver.findElement(LastName_EnterprisePlantxt).sendKeys("Truong");
         driver.findElement(Company_EnterprisePlantxt).sendKeys("689Cloud");
         driver.findElement(Phone_EnterprisePlantxt).sendKeys("0347994701");
-        Thread.sleep(2000);
         driver.findElement(Message_EnterprisePlanarea).sendKeys("Monitoring by Automation Test");
         driver.findElement(Submit_EnterprisePlanbtn).click();
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         WebElement VerifySubmitEnterprisePlanSuccess = driver.findElement(MessageSubmitEnterprisePlanpopup);
         Assert.assertTrue(VerifySubmitEnterprisePlanSuccess.isDisplayed());
         Thread.sleep(2000);
@@ -230,7 +227,6 @@ public class HomePage {
         driver.findElement(LastNametxt).sendKeys("Truong");
         driver.findElement(Company_OtherQuestiontxt).sendKeys("689Cloud");
         driver.findElement(Phonetxt).sendKeys("0347994701");
-        Thread.sleep(1000);
         driver.findElement(Messagearea).sendKeys("Monitoring by Automation Test");
         WebElement moveToSubmitbtn_OtherQuestions = driver.findElement(Company_OtherQuestiontxt);
         ((JavascriptExecutor) driver).executeScript(
@@ -247,14 +243,13 @@ public class HomePage {
         driver.findElement(LastNametxt).sendKeys("Truong");
         driver.findElement(Companytxt).sendKeys("689Cloud");
         driver.findElement(Phonetxt).sendKeys("0347994701");
-        Thread.sleep(2000);
         driver.findElement(Messagearea).sendKeys("Monitoring by Automation Test");
         WebElement moveToSubmitbtn_OtherQuestions = driver.findElement(Companytxt);
         ((JavascriptExecutor) driver).executeScript(
                 "arguments[0].scrollIntoView();", moveToSubmitbtn_OtherQuestions);
         Thread.sleep(2000);
         driver.findElement(Submit_GetInTouchbtn_CONTACTUS).click();
-        Thread.sleep(1000);
+        Thread.sleep(3000);
         WebElement VerifySubmitGetInTouchForm_CONTACUS = driver.findElement(MessageSubmitGetInTouchSuccess);
         Assert.assertTrue(VerifySubmitGetInTouchForm_CONTACUS.isDisplayed());
     }

@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class swichcase {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int n;
+        int n = 3;
         System.out.println("nhap so nhuyen tu 0-8");
         n = scanner.nextInt();
         switch (n){

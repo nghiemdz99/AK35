@@ -12,13 +12,6 @@ public class HomePageTest extends BaseTest {
     WebDriver driver;
     HomePage homePage;
 
-    @BeforeTest
-    void setUp() {
-        driver = SeleniumOwnerMethods.openBrowser("chrome");
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-    }
-
     @Test
     void TC0GoToHomePage() throws InterruptedException {
 

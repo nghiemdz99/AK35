@@ -5,17 +5,23 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.*;
+import support.SeleniumOwnerMethods;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
-    public WebDriver driver;
+    protected WebDriver driver;
+    @BeforeMethod
+    void setUp() {
+        driver = SeleniumOwnerMethods.openBrowser("chrome");
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+    }
     @AfterMethod
-    void tearDown(ITestResult result) throws IOException {
+    public void tearDown(ITestResult result) throws IOException {
         /**
          * Capture screenshot when test failed only
          */
@@ -29,16 +35,10 @@ public class BaseTest {
         }else {
             System.out.printf("Test : %s is PASS\n",testName);
         }
-
-        driver.quit();
-    }
-
-    @AfterTest
-    void finalTest() {
-        driver.quit();
     }
     @AfterSuite
-    void endAuto(){
+    public void endRun(){
+        System.out.println("quit");
         driver.quit();
     }
 }

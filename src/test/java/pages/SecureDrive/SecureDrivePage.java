@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
@@ -73,12 +74,12 @@ public class SecureDrivePage {
     private  By CloseInviteCollaboratorsiconpopup = By.xpath("//button[@tabindex='-1']");
     //View Online File
     private  By FilesList = By.className("p-datatable-tbody");
-    private  By Excel16xlsx = By.xpath("//span[@title='excel16.xlsx']");
+    private  By Mp4File = By.xpath("//span[@title='Hỏi Thăm Nhau - Lê Bảo Bình.mp4']");
     private  By Demopdf = By.xpath("//span[@title='Demo.pdf']");
     private  By Demodox = By.xpath("//span[@title='Demo.docx']");
     private  By TestDownloadpdf = By.xpath("//span[@title='TestDownload.pdf']");
-    private  By TestDownloaddocx = By.xpath("//span[@title='TestDownload.pdf']");
-    private  By CloseViewOnlineicon = By.xpath("//*[@id=\"content-wrapper\"]/div[2]/app-project/app-project-detail/app-view-online-form/p-sidebar/div/div/button");
+    private  By TestDownloaddocx = By.xpath("//span[@title='TestDownload.docx']");
+        private  By CloseViewOnlineicon = By.xpath("//*[@id=\"content-wrapper\"]/div[2]/app-project/app-project-detail/app-view-online-form/p-sidebar/div/div/app-view-online/p-button/button");
     //Disable DRM/ SetDRM
     private  By MoreActionicon = By.xpath("//i[@title='More options']");
     private  By ViewDRMSettingsoption = By.xpath("(//span[.='View DRM settings'])[2]");
@@ -107,7 +108,7 @@ public class SecureDrivePage {
     private  By Email_AddressBooktxt = By.id("mailAddress");
     private  By ADDNEW_AddressBookbtn = By.xpath("(//button[.='ADD'])[2]");
     //Delete AddressBook
-    private  By SelectFirstAddressBook = By.xpath("//*[@id=\"p-tabpanel-0\"]/app-addressbook-list/p-table/div/div[2]/table/tbody/tr[1]/td[1]/span");
+    private  By SelectFirstAddressBook = By.xpath("//span[@title='Nghiem']");
     private  By DELETE_AddressBookbtn = By.xpath("//span[.='DELETE']");
     private  By DELETE_AddressBookbtnpopup = By.xpath("//span[.='Delete']");
     private  By VerifyCreateFolderSuccessful = By.xpath("//span[@title='Foler testNG']");
@@ -130,27 +131,28 @@ public class SecureDrivePage {
     }
     //Login to system
     public void fillLoginpages() throws InterruptedException {
-        Thread.sleep(2000);
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(60));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(EnterYourEmailtxt));
         driver.findElement(EnterYourEmailtxt).sendKeys("user001@689cloud.asia");
         Thread.sleep(2000);
         driver.findElement(Nextbtn).click();
-        Thread.sleep(2000);
-        driver.findElement(EnterYourPasswordtxt).sendKeys("123456");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(EnterYourPasswordtxt));
+        driver.findElement(EnterYourPasswordtxt).sendKeys("1234567");
         driver.findElement(Loginbtn).click();
-        Thread.sleep(3000);
+        Thread.sleep(4000);
         Assert.assertEquals(driver.getCurrentUrl(), VerifyLoginSuccess);
     }
     // Fulfill Create Project
     public void fillCreateProjectpages() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(60));
         Thread.sleep(4000);
         driver.findElement(NewProjectbtn).click();
         Thread.sleep(500);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(CreateProjectWithSettingslink));
         driver.findElement(CreateProjectWithSettingslink).click();
         Thread.sleep(500);
         driver.findElement(ProjectNametxt).sendKeys("Monitoring " + gerenateCurrentdate());
-        Thread.sleep(1000);
         driver.findElement(AutomaticallyapplyDRMchk).click();
-        Thread.sleep(2000);
         driver.findElement(SetDocumentExpirydatechk).click();
         driver.findElement(Printable_CreateProjectchk).click();
         driver.findElement(Editable_CreateProjectchk).click();
@@ -159,18 +161,19 @@ public class SecureDrivePage {
         driver.findElement(SetWaterMarkContent_CreateProjecttxt).sendKeys("Watermark Automation Test");
         Thread.sleep(1000);
         driver.findElement(Save_CreateProjectbtn).click();
-        Thread.sleep(700);
-        WebElement VerifyCreateProject = driver.findElement(MessageSuccessfully);
+        WebElement VerifyCreateProject = wait.until(ExpectedConditions.visibilityOfElementLocated(MessageSuccessfully));
         Assert.assertTrue(VerifyCreateProject.isDisplayed());
     }
     // Go to Project Details
     public void goToProjectDetails() throws InterruptedException {
         //Go to Project details
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(60));
         Actions doubleClick = new Actions(driver);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(FirstProjectOnList));
         WebElement Project = driver.findElement(FirstProjectOnList);
         doubleClick.doubleClick(Project).perform();
         Thread.sleep(2000);
-        WebElement VerifygoToProjectDetailsSuccess = driver.findElement(VerifygoToProjectDetdails);
+        WebElement VerifygoToProjectDetailsSuccess = wait.until(ExpectedConditions.visibilityOfElementLocated(VerifygoToProjectDetdails));
         Assert.assertTrue(VerifygoToProjectDetailsSuccess.isDisplayed());
     }
     //Upload Files
@@ -204,30 +207,31 @@ public class SecureDrivePage {
                 System.out.println("No normal files available for encryption");
                 break;
             }
-        }while (Encoding !=null);{
+        }while (Encoding !=null);
             System.out.println("ENCOEDING IS COMPLETE");
-        }
         WebElement VerifyEncodeisWorking = driver.findElement(VerifyEncodeSuccess);
         Assert.assertTrue(VerifyEncodeisWorking.isDisplayed());
+        Thread.sleep(5000);
     }
     public void createFolder() throws InterruptedException {
         //Create Folder
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10000));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(CreateNewFoldericon));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+        Thread.sleep(2000);
+        wait.until(ExpectedConditions.elementToBeClickable(CreateNewFoldericon));
         driver.findElement(CreateNewFoldericon).click();
         Thread.sleep(1000);
         driver.findElement(FolderNametxt).sendKeys("Foler testNG");
         Thread.sleep(1000);
         driver.findElement(Save_CreateFolderbtn).click();
-        Thread.sleep(1000);
-        WebElement VerifyCreateFolderSuccess = driver.findElement(VerifyCreateFolderSuccessful);
+        Thread.sleep(4000);
+        WebElement VerifyCreateFolderSuccess = wait.until(ExpectedConditions.visibilityOfElementLocated(VerifyCreateFolderSuccessful));
         Assert.assertTrue(VerifyCreateFolderSuccess.isDisplayed());
     }
     public void inviteCollaborators() throws InterruptedException {
         // Invite Collaborators
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10000));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+        Thread.sleep(10000);
         wait.until(ExpectedConditions.visibilityOfElementLocated(InviteCollaboratorsicon));
-        Thread.sleep(2000);
         driver.findElement(InviteCollaboratorsicon).click();
         Thread.sleep(1000);
         driver.findElement(SelectMemberGroupicon).click();
@@ -244,41 +248,47 @@ public class SecureDrivePage {
     }
     //Move File from Project to Folder
     public void MoveFileToFolder() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+        Thread.sleep(10000);
+        driver.findElement(Mp4File).click();
         Thread.sleep(2000);
-        driver.findElement(Excel16xlsx).click();
         driver.findElement(MoreActionicon).click();
-        driver.findElement(MoveOptions).click();
-        driver.findElement(ToFolderTestNG).click();
-        driver.findElement(MOVETObtn).click();
         Thread.sleep(1000);
+        driver.findElement(MoveOptions).click();
+        Thread.sleep(3000);
+        driver.findElement(ToFolderTestNG).click();
+        Thread.sleep(1000);
+        driver.findElement(MOVETObtn).click();
+        Thread.sleep(3000);
         WebElement VerifyMoveFileToFolderSuccess = driver.findElement(MessageSuccessfully);
         Assert.assertTrue(VerifyMoveFileToFolderSuccess.isDisplayed());
     }
     // View Online File (PDF, Office)
     public void viewOnlineFile() throws InterruptedException {
         Actions doubleClick = new Actions(driver);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        Thread.sleep(3000);
-        wait.until(ExpectedConditions.elementToBeClickable(TestDownloadpdf));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+        Thread.sleep(2000);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(TestDownloadpdf));
         WebElement ViewOnline01 = driver.findElement(TestDownloadpdf);
         doubleClick.doubleClick(ViewOnline01).perform();
-        Thread.sleep(10000);
-        WebElement VerifyViewOnlinePDFSuccess = driver.findElement(VerifyViewOnline);
+        Thread.sleep(5000);
+        WebElement VerifyViewOnlinePDFSuccess = wait.until(ExpectedConditions.visibilityOfElementLocated(VerifyViewOnline));
         Assert.assertTrue(VerifyViewOnlinePDFSuccess.isDisplayed());
-        Thread.sleep(1000);
+        Thread.sleep(4000);
         driver.findElement(CloseViewOnlineicon).click();
+        Thread.sleep(3000);
         wait.until(ExpectedConditions.elementToBeClickable(TestDownloaddocx));
         WebElement ViewOnline02 = driver.findElement(TestDownloaddocx);
-        doubleClick.doubleClick(ViewOnline01).perform();
-        Thread.sleep(10000);
-        WebElement VerifyViewOnlineDOCXSuccess = driver.findElement(VerifyViewOnline);
+        doubleClick.doubleClick(ViewOnline02).perform();
+        Thread.sleep(5000);
+        WebElement VerifyViewOnlineDOCXSuccess = wait.until(ExpectedConditions.visibilityOfElementLocated(VerifyViewOnline));
         Assert.assertTrue(VerifyViewOnlineDOCXSuccess.isDisplayed());
-        Thread.sleep(1000);
+        Thread.sleep(4000);
         driver.findElement(CloseViewOnlineicon).click();
     }
     // Disable DRM (PDF, Office)
     public void DisableDRM() throws InterruptedException {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10000));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
         Thread.sleep(2000);
         wait.until(ExpectedConditions.visibilityOfElementLocated(Demodox));
         driver.findElement(Demodox).click();
@@ -289,7 +299,7 @@ public class SecureDrivePage {
         Thread.sleep(1000);
         driver.findElement(DisableDRMbtn).click();
         Thread.sleep(3000);
-        WebElement VerifyDisableDRMSuccess = driver.findElement(VerifyDisableDRM);
+        WebElement VerifyDisableDRMSuccess = wait.until(ExpectedConditions.visibilityOfElementLocated(VerifyDisableDRM));
         Assert.assertTrue(VerifyDisableDRMSuccess.isDisplayed());
         Thread.sleep(3000);
         wait.until(ExpectedConditions.elementToBeClickable(Demopdf));
@@ -300,10 +310,11 @@ public class SecureDrivePage {
         Thread.sleep(1000);
         driver.findElement(DisableDRMbtn).click();
         Thread.sleep(3000);
-        WebElement VerifyDisableDRMSuccessPDF = driver.findElement(VerifyDisableDRM);
+        WebElement VerifyDisableDRMSuccessPDF = wait.until(ExpectedConditions.visibilityOfElementLocated(VerifyDisableDRM));
         Assert.assertTrue(VerifyDisableDRMSuccessPDF.isDisplayed());
     }
     public void internalTeamTrackingReport() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
         Thread.sleep(2000);
         WebElement ViewTrackingReporticon = driver.findElement(ViewInternalTrackingFile);
         ViewTrackingReporticon.findElement(FileTrackingicon).click();
@@ -328,8 +339,8 @@ public class SecureDrivePage {
     }
     // Delete AddressBook
     public void deleteAddressBook() throws InterruptedException {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1000));
-        wait.until(ExpectedConditions.elementToBeClickable(SelectFirstAddressBook));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        Thread.sleep(5000);
         driver.findElement(SelectFirstAddressBook).click();
         Thread.sleep(1000);
         driver.findElement(DELETE_AddressBookbtn).click();
@@ -341,8 +352,9 @@ public class SecureDrivePage {
     }
     // Update Project info
     public void updateProject() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         driver.navigate().to(HomePageLink);
-        Thread.sleep(3000);
+        Thread.sleep(5000);
         driver.findElement(FirstProjectOnList).click();
         Thread.sleep(2000);
         driver.findElement(SettingsProjecticon).click();
@@ -355,13 +367,13 @@ public class SecureDrivePage {
 //        driver.findElement(Editable_ShareProjectchk).click();//uncheck
         Thread.sleep(2000);
         driver.findElement(Save_CreateProjectbtn).click();
-        Thread.sleep(1000);
-        WebElement VerifyUpdateProjectSuccess = driver.findElement(MessageSuccessfully);
+        WebElement VerifyUpdateProjectSuccess = wait.until(ExpectedConditions.visibilityOfElementLocated(MessageSuccessfully));
         Assert.assertTrue(VerifyUpdateProjectSuccess.isDisplayed());
     }
     //Share project
     public void shareProjectDRM() throws InterruptedException {
-        Thread.sleep(2000);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+        Thread.sleep(5000);
         driver.findElement(FirstProjectOnList).click();
         Thread.sleep(1000);
         driver.findElement(ShareProjecticon).click();
@@ -370,8 +382,8 @@ public class SecureDrivePage {
         Thread.sleep(1000);
         driver.findElement(CreateLinkbtn).click();
         Thread.sleep(3000);
-//        WebElement VerifyCreateLinkSuccessful = driver.findElement(VerifyCreateLink);
-//        Assert.assertTrue(VerifyCreateLinkSuccessful.isDisplayed());
+//          WebElement VerifyCreateLinkSuccessful = driver.findElement(VerifyCreateLink);
+//          Assert.assertTrue(VerifyCreateLinkSuccessful.isDisplayed());
         WebElement InputRecipient = driver.findElement(Emailtxt);
         InputRecipient.sendKeys("vannghiem689@gmail.com");
         Thread.sleep(1000);
@@ -383,7 +395,7 @@ public class SecureDrivePage {
         driver.findElement(AddWatermarktoViewOnline_ShareProjectchk).click();
         Thread.sleep(1000);
         driver.findElement(Donebtn).click();
-        Thread.sleep(2000);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(MessageSuccessfully));
         WebElement VerifyShareProjectSuccess = driver.findElement(MessageSuccessfully);
         Assert.assertTrue(VerifyShareProjectSuccess.isDisplayed());
     }

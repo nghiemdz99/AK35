@@ -2,31 +2,26 @@ package testsuites.z689Cloud;
 import Base.BaseTest;
 import org.openqa.selenium.WebDriver;
 
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.SecureDrive.SecureDrivePage;
 import support.SeleniumOwnerMethods;
-import java.util.concurrent.TimeUnit;
 
 
 public class SecureDriveTest extends BaseTest {
 
-    WebDriver driver;
     SecureDrivePage secureDrivePage;
-
     @BeforeTest
     void setUp() {
         driver = SeleniumOwnerMethods.openBrowser("chrome");
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+//        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
     @Test
     void goToURL() throws InterruptedException {
         secureDrivePage = new SecureDrivePage(driver);
         secureDrivePage.navigateToLoginPage();
         Thread.sleep(2000);
-
     }
     @Test
     void TC01_Login() throws InterruptedException {
@@ -41,16 +36,16 @@ public class SecureDriveTest extends BaseTest {
         secureDrivePage.goToProjectDetails();
     }
     @Test
-    void TC04_UploadFiles() throws InterruptedException {
+    void TC04_CreateFolder() throws InterruptedException {
+        secureDrivePage.createFolder();
+    }
+    @Test
+    void TC05_UploadFiles() throws InterruptedException {
         secureDrivePage.uploadFiles();
     }
     @Test
-    void TC05_UploadFolder() throws InterruptedException {
+    void TC06_UploadFolder() throws InterruptedException {
         secureDrivePage.uploadFolder();
-    }
-    @Test
-    void TC06_CreateFolder() throws InterruptedException {
-        secureDrivePage.createFolder();
     }
     @Test
     void TC07_MoveFileToFolder() throws InterruptedException {
