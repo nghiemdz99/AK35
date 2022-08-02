@@ -13,13 +13,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
-    protected WebDriver driver;
-    @BeforeMethod
-    void setUp() {
-        driver = SeleniumOwnerMethods.openBrowser("chrome");
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-    }
+    public WebDriver driver;
     @AfterMethod
     public void tearDown(ITestResult result) throws IOException {
         /**
@@ -36,9 +30,5 @@ public class BaseTest {
             System.out.printf("Test : %s is PASS\n",testName);
         }
     }
-    @AfterSuite
-    public void endRun(){
-        System.out.println("quit");
-        driver.quit();
-    }
+
 }

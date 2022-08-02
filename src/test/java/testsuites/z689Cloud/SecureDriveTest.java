@@ -2,21 +2,24 @@ package testsuites.z689Cloud;
 import Base.BaseTest;
 import org.openqa.selenium.WebDriver;
 
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.SecureDrive.SecureDrivePage;
 import support.SeleniumOwnerMethods;
 
+import java.util.concurrent.TimeUnit;
+
 
 public class SecureDriveTest extends BaseTest {
-
     SecureDrivePage secureDrivePage;
     @BeforeTest
     void setUp() {
         driver = SeleniumOwnerMethods.openBrowser("chrome");
         driver.manage().window().maximize();
-//        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
     }
+
     @Test
     void goToURL() throws InterruptedException {
         secureDrivePage = new SecureDrivePage(driver);

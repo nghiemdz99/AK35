@@ -6,7 +6,7 @@
                 <include name="goToURL"/>
                 <include name="TC01_Login"/>
                 <include name="TC02_CreateProjectWithAutoApplyDRM"/>
-                <include name="TC03_GoToProjectDetails"/>
+<!--                <include name="TC03_GoToProjectDetails"/>-->
 <!--                <include name="TC04_CreateFolder"/>-->
 <!--                <include name="TC05_UploadFiles"/>-->
 <!--                <include name="TC06_UploadFolder"/>-->

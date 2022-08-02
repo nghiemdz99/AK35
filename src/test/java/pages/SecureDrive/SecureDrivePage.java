@@ -15,7 +15,7 @@ import static support.JavaUntillDrive.gerenateCurrentdate;
 
 
 public class SecureDrivePage {
-    WebDriver driver;
+     WebDriver driver;
     //URL
     String URL = "https://app.689cloud.com/#/login";
     String HomePageLink = "https://app.689cloud.com/#/project";
@@ -137,7 +137,7 @@ public class SecureDrivePage {
         Thread.sleep(2000);
         driver.findElement(Nextbtn).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(EnterYourPasswordtxt));
-        driver.findElement(EnterYourPasswordtxt).sendKeys("1234567");
+        driver.findElement(EnterYourPasswordtxt).sendKeys("01234567");
         driver.findElement(Loginbtn).click();
         Thread.sleep(4000);
         Assert.assertEquals(driver.getCurrentUrl(), VerifyLoginSuccess);
